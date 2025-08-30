@@ -34,6 +34,7 @@ No nível Novato, você iniciará criando o sistema básico do jogo Super Trunfo
 *   Cadastre apenas **duas** cartas.
 *   Concentre-se na leitura, armazenamento e exibição. Não implemente comparações ou outros recursos.
 *   **Não use** laços (`for`, `while`) ou condicionais (`if`, `else`).
+<img width="2002" height="1262" alt="image" src="https://github.com/user-attachments/assets/3195bd25-60af-42a8-9632-71f06ef5e706" />
 
 
 ## 🛡️ Nível Aventureiro: Cálculo de Atributos
