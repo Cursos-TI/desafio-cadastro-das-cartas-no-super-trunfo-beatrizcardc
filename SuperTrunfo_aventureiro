@@ -1,0 +1,110 @@
+// Desafio Super Trunfo - Países — Nível Aventureiro
+// Autor: Beatriz Cardoso Cunha
+// Objetivo: Cadastrar DUAS cartas e exibir também Densidade Populacional e PIB per Capita
+// Restrições: sem laços (for/while) e sem condicionais (if/else)
+
+#include <stdio.h>
+#include <string.h>
+
+// Estrutura da carta com atributos calculados
+struct Carta {
+    char estado[10];
+    char codigo[10];
+    char cidade[50];
+    int populacao;      // int no nível Aventureiro (mesmo do Novato)
+    float area;         // km²
+    float pib;          // bilhões
+    int pontos;         // pontos turísticos
+    float densidade;    // calculado: populacao / area
+    float pib_per_cap;  // calculado: pib / populacao
+};
+
+void lerString(char *str, int tamanho) {
+    fgets(str, tamanho, stdin);
+    str[strcspn(str, "\n")] = '\0';
+}
+
+int main(void) {
+    struct Carta c1, c2;
+
+    // ---------- Cadastro da Carta 1 ----------
+    printf("Cadastro da Carta 1\n");
+    printf("Estado (ex: SP): ");
+    lerString(c1.estado, sizeof(c1.estado));
+
+    printf("Código (ex: A01): ");
+    lerString(c1.codigo, sizeof(c1.codigo));
+
+    printf("Cidade: ");
+    lerString(c1.cidade, sizeof(c1.cidade));
+
+    printf("População: ");
+    scanf("%d", &c1.populacao);
+
+    printf("Área (km2): ");
+    scanf("%f", &c1.area);
+
+    printf("PIB (em bilhões): ");
+    scanf("%f", &c1.pib);
+
+    printf("Número de pontos turísticos: ");
+    scanf("%d", &c1.pontos);
+
+    getchar(); // consome o ENTER pendente antes do próximo lerString
+
+    // Cálculos (sem if/else, apenas aritmética)
+    c1.densidade = (c1.area != 0.0f) ? ((float)c1.populacao / c1.area) : 0.0f;
+    c1.pib_per_cap = (c1.populacao != 0) ? (c1.pib / (float)c1.populacao) : 0.0f;
+
+    // ---------- Cadastro da Carta 2 ----------
+    printf("\nCadastro da Carta 2\n");
+    printf("Estado (ex: RJ): ");
+    lerString(c2.estado, sizeof(c2.estado));
+
+    printf("Código (ex: B02): ");
+    lerString(c2.codigo, sizeof(c2.codigo));
+
+    printf("Cidade: ");
+    lerString(c2.cidade, sizeof(c2.cidade));
+
+    printf("População: ");
+    scanf("%d", &c2.populacao);
+
+    printf("Área (km2): ");
+    scanf("%f", &c2.area);
+
+    printf("PIB (em bilhões): ");
+    scanf("%f", &c2.pib);
+
+    printf("Número de pontos turísticos: ");
+    scanf("%d", &c2.pontos);
+
+    // Cálculos
+    c2.densidade = (c2.area != 0.0f) ? ((float)c2.populacao / c2.area) : 0.0f;
+    c2.pib_per_cap = (c2.populacao != 0) ? (c2.pib / (float)c2.populacao) : 0.0f;
+
+    // ---------- Saída organizada ----------
+    printf("\n===== CARTA 1 =====\n");
+    printf("Estado: %s\n", c1.estado);
+    printf("Código: %s\n", c1.codigo);
+    printf("Cidade: %s\n", c1.cidade);
+    printf("População: %d\n", c1.populacao);
+    printf("Área (km2): %.2f\n", c1.area);
+    printf("PIB (bi): %.2f\n", c1.pib);
+    printf("Pontos turísticos: %d\n", c1.pontos);
+    printf("Densidade (hab/km2): %.2f\n", c1.densidade);
+    printf("PIB per Capita: %.6f\n", c1.pib_per_cap);
+
+    printf("\n===== CARTA 2 =====\n");
+    printf("Estado: %s\n", c2.estado);
+    printf("Código: %s\n", c2.codigo);
+    printf("Cidade: %s\n", c2.cidade);
+    printf("População: %d\n", c2.populacao);
+    printf("Área (km2): %.2f\n", c2.area);
+    printf("PIB (bi): %.2f\n", c2.pib);
+    printf("Pontos turísticos: %d\n", c2.pontos);
+    printf("Densidade (hab/km2): %.2f\n", c2.densidade);
+    printf("PIB per Capita: %.6f\n", c2.pib_per_cap);
+
+    return 0;
+}
