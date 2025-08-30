@@ -1,0 +1,74 @@
+// Desafio Super Trunfo - Países - Nível Mestre
+// Autor: Beatriz Cardoso Cunha
+// Objetivo: Cadastro, cálculo de atributos, comparação e Super Poder entre duas cartas
+
+#include <stdio.h>
+#include <string.h>
+
+struct Carta {
+    char estado[30];
+    char codigo[5];
+    char cidade[50];
+    unsigned long int populacao;
+    float area;
+    float pib;
+    int pontos_turisticos;
+    float densidade;
+    float pib_per_capita;
+    float super_poder;
+};
+
+// Função para limpar o \n do fgets
+void limparEnter(char *str) {
+    str[strcspn(str, "\n")] = '\0';
+}
+
+// Função para calcular o Super Poder
+float calcularSuperPoder(struct Carta c) {
+    float inverso_densidade = 1.0 / c.densidade;
+    return c.populacao + c.area + c.pib + c.pontos_turisticos + c.pib_per_capita + inverso_densidade;
+}
+
+int main() {
+    struct Carta c1, c2;
+
+    printf("Cadastro da primeira carta:\n");
+    printf("Estado: "); fgets(c1.estado, 30, stdin); limparEnter(c1.estado);
+    printf("Código: "); fgets(c1.codigo, 5, stdin); limparEnter(c1.codigo);
+    printf("Cidade: "); fgets(c1.cidade, 50, stdin); limparEnter(c1.cidade);
+    printf("População: "); scanf("%lu", &c1.populacao);
+    printf("Área (km2): "); scanf("%f", &c1.area);
+    printf("PIB (em bilhões): "); scanf("%f", &c1.pib);
+    printf("Nº de pontos turísticos: "); scanf("%d", &c1.pontos_turisticos);
+    getchar(); // limpa o \n do último scanf
+
+    c1.densidade = c1.populacao / c1.area;
+    c1.pib_per_capita = c1.pib / c1.populacao;
+    c1.super_poder = calcularSuperPoder(c1);
+
+    printf("\nCadastro da segunda carta:\n");
+    printf("Estado: "); fgets(c2.estado, 30, stdin); limparEnter(c2.estado);
+    printf("Código: "); fgets(c2.codigo, 5, stdin); limparEnter(c2.codigo);
+    printf("Cidade: "); fgets(c2.cidade, 50, stdin); limparEnter(c2.cidade);
+    printf("População: "); scanf("%lu", &c2.populacao);
+    printf("Área (km2): "); scanf("%f", &c2.area);
+    printf("PIB (em bilhões): "); scanf("%f", &c2.pib);
+    printf("Nº de pontos turísticos: "); scanf("%d", &c2.pontos_turisticos);
+
+    c2.densidade = c2.populacao / c2.area;
+    c2.pib_per_capita = c2.pib / c2.populacao;
+    c2.super_poder = calcularSuperPoder(c2);
+
+    // Resultados
+    printf("\n=== COMPARAÇÃO DAS CARTAS ===\n");
+
+    printf("População: %d\n", (c1.populacao > c2.populacao));
+    printf("Área: %d\n", (c1.area > c2.area));
+    printf("PIB: %d\n", (c1.pib > c2.pib));
+    printf("Pontos Turísticos: %d\n", (c1.pontos_turisticos > c2.pontos_turisticos));
+    printf("Densidade Populacional (vence menor): %d\n", (c1.densidade < c2.densidade));
+    printf("PIB per Capita: %d\n", (c1.pib_per_capita > c2.pib_per_capita));
+    printf("Super Poder: %d\n", (c1.super_poder > c2.super_poder));
+
+    return 0;
+}
