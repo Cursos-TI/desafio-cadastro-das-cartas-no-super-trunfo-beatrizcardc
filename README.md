@@ -62,6 +62,7 @@ No nível Aventureiro, você expandirá o sistema para incluir o cálculo de doi
 *   Continue cadastrando apenas **duas** cartas.
 *   Continue **sem usar** laços (`for`, `while`) ou condicionais (`if`, `else`).
 
+<img width="1803" height="1230" alt="image" src="https://github.com/user-attachments/assets/6699476c-367a-4a15-b442-c2102f5e75a5" />
 
 
 ## 🏆 Nível Mestre: Comparação e Super Poder
